@@ -6,12 +6,12 @@
 #    By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 23:57:19 by xperrin           #+#    #+#              #
-#    Updated: 2018/07/07 18:09:44 by xperrin          ###   ########.fr        #
+#    Updated: 2018/07/10 18:42:46 by xperrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
-CFLAGS = -Wextra -Wall -Werror -g
+CFLAGS = -Wextra -Wall -g #-Werror 
 LDFLAGS = -L$(LIB) -lft
 
 LIB = libft
@@ -24,7 +24,8 @@ INCFULL = $(addprefix $(INCDIR)/, $(INCFILES))
 INC = $(addprefix -I, $(INCDIR)) $(LIBINC)
 SRCDIR = src
 
-SRC = main.c
+SRC = main.c \
+      parse.c
 
 VPATH= $(SRCDIR)
 OBJDIR = obj
