@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/10 19:44:48 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/10 22:11:27 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ int				print_error(void)
 int				main(void)
 {
 	t_info	i;
+	t_list	rooms;
 
 	if (!(i.ants = parse_ant_number()))
 		return (print_error());
 	ft_printf("%d\n", i.ants);
+	parse_rooms(i, rooms);
 	return (0);
 }
