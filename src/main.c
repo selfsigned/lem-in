@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/21 15:25:01 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/22 14:07:47 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ static int		read_input(t_list **list)
 	return (1);
 }
 
+static	void	del_lst_string(void	*str, size_t len)
+{
+	(void)len;
+	free(str);
+}
+
 int				print_error(void)
 {
 	ft_putstr(ERROR_S);
@@ -60,18 +66,14 @@ int				print_error(void)
 
 int				main(void)
 {
-	t_info	i;
-	t_list	rooms;
+	t_info	info;
+	t_list	*rooms;
 	t_list	*input;
 
-	if (!(i.ants = parse_ant_number()))
+	if (!(info.ants = parse_ant_number()))
 		return (print_error());
-	ft_printf("%d\n", i.ants);
 	read_input(&input);
-	while (input)
-	{
-		ft_printf("content: %s next:%p\n", input->content, input->next);
-		input = input->next;
-	}
+	parse_rooms(input, &info, &rooms);
+	ft_lstdel(&input, del_lst_string); /* TODO proper functions */
 	return (0);
 }
