@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/23 08:53:00 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/23 12:41:39 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,20 @@ int				main(void)
 	if (!read_input(&input))
 		return (print_error());
 	parse_rooms(input, &info, &rooms);
+
+	t_room *tmp;
+
+	for (int i = 0; rooms ; i++)
+	{
+		if (i != 0)
+		{
+			tmp = rooms->content;
+			ft_printf("name:%s x:%d y:%d flag:%d next:%p\n", 
+				tmp->name,	tmp->x, tmp->y, tmp->flag, rooms->next);
+		}
+		rooms = rooms->next;
+	}
+
 	ft_lstdel(&input, del_lst_string); /* TODO proper functions */
 	return (0);
 }

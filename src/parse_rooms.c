@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:16:40 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/23 09:02:39 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/23 12:04:07 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,22 @@ int				parse_rooms(t_list *input, t_info *info, t_list **rooms)
 {
 	size_t		room_count;
 	t_posflag	flag;
-	t_room		testroom;
+	t_room		new_room;
+	t_list		*r_list;
+	t_list		*tmp_list;
 
 	room_count = 0;
 	flag = nil;
+	*rooms  = ft_lstnew(NULL, sizeof(NULL));
+	tmp_list= *rooms;
 	while (input)
 	{
 		if (is_room(input->content))
 		{
-			testroom = create_room(input->content, flag);
-			ft_printf("name:%s x:%d y:%d flag:%d\n", testroom.name, testroom.x,
-					testroom.y, flag);
+			new_room = create_room(input->content, flag);
+			r_list = ft_lstnew(&new_room, sizeof(t_room));
+			tmp_list->next = r_list;
+			tmp_list = tmp_list->next;
 			flag = nil;
 			room_count++;
 		}
@@ -80,6 +85,5 @@ int				parse_rooms(t_list *input, t_info *info, t_list **rooms)
 			flag = end;
 		input = input->next;
 	}
-	ft_printf("%d\n", room_count);
-	return (1);
+	return ((room_count < 2) ? 0 : 1);
 }
