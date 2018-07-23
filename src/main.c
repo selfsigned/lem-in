@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/23 08:37:11 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/23 08:53:00 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ static int		read_input(t_list **list)
 
 	if (get_next_line(0, &line) <= 0)
 	{
-		free(line);
+		/* free(line); */
 		return (0);
 	}
-	*list = ft_lstnew(line,  sizeof(char) * ft_strlen(line));
+	*list = ft_lstnew(line,  sizeof(char) * (ft_strlen(line) + 1));
 	tmp_list = *list;
 	free(line);
 	while (get_next_line(0, &line) > 0)
 	{
-		next_list = ft_lstnew(line, sizeof(char) * ft_strlen(line));
+		next_list = ft_lstnew(line, sizeof(char) * (ft_strlen(line) + 1));
 		tmp_list->next = next_list;
 		tmp_list = tmp_list->next;
 		free(line);

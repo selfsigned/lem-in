@@ -6,19 +6,17 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:16:40 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/23 08:30:00 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/23 09:02:39 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static	int		is_room(t_list *input)
+static	int		is_room(char *s)
 {
 	size_t	i;
-	char	*s;
 
 	i = 0;
-	s = (char*)input->content;
 	if (s[i] == 'L' || s[i] == '#')
 		return (0);
 	while (s[i] && ft_isalnum(s[i]))
@@ -32,7 +30,7 @@ static	int		is_room(t_list *input)
 	return (1);
 }
 
-static	t_room	create_room(t_list *input, t_posflag flag)
+static	t_room	create_room(char *input, t_posflag flag)
 {
 	t_room	room;
 	char	**s;
@@ -40,7 +38,7 @@ static	t_room	create_room(t_list *input, t_posflag flag)
 
 	room.flag = flag;
 	room.name = NULL;
-	if (!(s = ft_strsplit(input->content, ' ')))
+	if (!(s = ft_strsplit(input, ' ')))
 		return (room);
 	i = 0;
 	while (s[i])
@@ -68,9 +66,9 @@ int				parse_rooms(t_list *input, t_info *info, t_list **rooms)
 	flag = nil;
 	while (input)
 	{
-		if (is_room(input))
+		if (is_room(input->content))
 		{
-			testroom = create_room(input, flag);
+			testroom = create_room(input->content, flag);
 			ft_printf("name:%s x:%d y:%d flag:%d\n", testroom.name, testroom.x,
 					testroom.y, flag);
 			flag = nil;
