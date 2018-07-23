@@ -6,7 +6,7 @@
 #    By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 23:57:19 by xperrin           #+#    #+#              #
-#    Updated: 2018/07/21 19:05:58 by xperrin          ###   ########.fr        #
+#    Updated: 2018/07/23 17:43:08 by xperrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ INC = $(addprefix -I, $(INCDIR)) $(LIBINC)
 SRCDIR = src
 
 SRC = main.c \
+      mem.c \
       parse_rooms.c
 
 VPATH= $(SRCDIR)

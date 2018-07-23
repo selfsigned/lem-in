@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/23 12:41:39 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/23 18:47:37 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,6 @@ static int		read_input(t_list **list)
 	return (1);
 }
 
-static	void	del_lst_string(void	*str, size_t len)
-{
-	(void)len;
-	free(str);
-}
-
 int				print_error(void)
 {
 	ft_putstr(ERROR_S);
@@ -67,17 +61,24 @@ int				print_error(void)
 int				main(void)
 {
 	t_info	info;
-	t_list	*rooms;
 	t_list	*input;
+	t_list	*rooms;
+	t_list	*rooms_t;
+
+	t_room	*tmp;
 
 	if (!(info.ants = parse_ant_number()))
 		return (print_error());
 	if (!read_input(&input))
 		return (print_error());
-	parse_rooms(input, &info, &rooms);
-
-	t_room *tmp;
-
+	if (!parse_rooms(input, &info, &rooms))
+	{
+		ft_lstdel(&input, del_lst_string);
+		return (print_error());
+	}
+	rooms_t = rooms;
+	rooms = rooms->next;
+	free(rooms_t);
 	for (int i = 0; rooms ; i++)
 	{
 		if (i != 0)
@@ -88,7 +89,7 @@ int				main(void)
 		}
 		rooms = rooms->next;
 	}
-
+	ft_lstdel(&rooms_t, del_room);
 	ft_lstdel(&input, del_lst_string); /* TODO proper functions */
 	return (0);
 }

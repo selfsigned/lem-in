@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/23 08:21:33 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/23 18:32:06 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,12 @@ typedef struct	s_link
 
 int				print_error(void);
 int				parse_rooms(t_list *input, t_info *info, t_list **rooms);
+
+/*
+** mem.c
+*/
+void			del_lst_string(void	*str, size_t len);
+void			del_void(void *nothing ,size_t len);
+void			del_room(void *room, size_t len);
 
 #endif
