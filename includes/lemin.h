@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/22 19:32:59 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/23 08:21:33 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 
 # define ERROR_S "ERROR\n"
 
+typedef enum	e_posflag
+{
+	nil,
+	start,
+	end
+}				t_posflag;
+
 typedef struct	s_info
 {
 	size_t		ants;
@@ -31,8 +38,9 @@ typedef struct	s_info
 typedef struct	s_room
 {
 	char		*name;
-	int			coord_x;
-	int			coord_y;
+	int			x;
+	int			y;
+	t_posflag	flag;
 	t_list		*links;
 }				t_room;
 
@@ -40,13 +48,6 @@ typedef struct	s_link
 {
 	t_list		*link;
 }				t_link;
-
-typedef enum	e_posflag
-{
-	nil,
-	start,
-	end
-}				t_posflag;
 
 int				print_error(void);
 int				parse_rooms(t_list *input, t_info *info, t_list **rooms);

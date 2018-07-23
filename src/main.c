@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/22 14:07:47 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/23 08:37:11 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int				main(void)
 
 	if (!(info.ants = parse_ant_number()))
 		return (print_error());
-	read_input(&input);
+	if (!read_input(&input))
+		return (print_error());
 	parse_rooms(input, &info, &rooms);
 	ft_lstdel(&input, del_lst_string); /* TODO proper functions */
 	return (0);
