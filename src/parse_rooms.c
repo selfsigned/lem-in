@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:16:40 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/23 12:04:07 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/25 22:32:25 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,16 @@ int				parse_rooms(t_list *input, t_info *info, t_list **rooms)
 	flag = nil;
 	*rooms  = ft_lstnew(NULL, sizeof(NULL));
 	tmp_list= *rooms;
+	info->start = NULL;
+	info->end = NULL;
 	while (input)
 	{
 		if (is_room(input->content))
 		{
 			new_room = create_room(input->content, flag);
 			r_list = ft_lstnew(&new_room, sizeof(t_room));
+			info->start = (flag == start) ? r_list : info->start;
+			info->end = (flag == end) ? r_list : info->end;
 			tmp_list->next = r_list;
 			tmp_list = tmp_list->next;
 			flag = nil;
