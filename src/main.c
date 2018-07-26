@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/25 22:39:48 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/26 16:02:43 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,16 @@ int				main(void)
 	rooms_t = rooms;
 	rooms = rooms->next;
 	free(rooms_t);
-	for (int i = 0; rooms ; i++)
+	rooms_t = rooms;
+	for (int i = 0; rooms_t ; i++)
 	{
-		tmp = rooms->content;
+		tmp = rooms_t->content;
 		ft_printf("name:%s x:%d y:%d flag:%d next:%p\n",
-		tmp->name,	tmp->x, tmp->y, tmp->flag, rooms->next);
-		rooms = rooms->next;
+		tmp->name,	tmp->x, tmp->y, tmp->flag, rooms_t->next);
+		rooms_t = rooms_t->next;
 	}
 	ft_printf("start:%p end:%p\n", info.start, info.end);
-	ft_lstdel(&rooms_t, del_room);
+	ft_lstdel(&rooms, del_room);
 	ft_lstdel(&input, del_lst_string); /* TODO proper functions */
 	return (0);
 }
