@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/26 16:02:43 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/26 16:36:38 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,19 @@ static int		read_input(t_list **list)
 	return (1);
 }
 
+static	void	disp_rooms(t_list *rooms)
+{
+	t_room	*tmp;
+
+	while (rooms)
+	{
+		tmp = rooms->content;
+		ft_printf("name:%.5s x:%.02d y:%.02d flag:%d next:%p\n",
+		tmp->name,	tmp->x, tmp->y, tmp->flag, rooms->next);
+		rooms = rooms->next;
+	}
+}
+
 int				print_error(void)
 {
 	ft_putstr(ERROR_S);
@@ -65,8 +78,6 @@ int				main(void)
 	t_list	*rooms;
 	t_list	*rooms_t;
 
-	t_room	*tmp;
-
 	if (!(info.ants = parse_ant_number()))
 		return (print_error());
 	if (!read_input(&input))
@@ -76,19 +87,20 @@ int				main(void)
 		ft_lstdel(&input, del_lst_string);
 		return (print_error());
 	}
+	if (!parse_links(input, &rooms))
+	{
+		ft_lstdel(&input, del_lst_string);
+		return (print_error());
+	}
 	rooms_t = rooms;
 	rooms = rooms->next;
 	free(rooms_t);
-	rooms_t = rooms;
-	for (int i = 0; rooms_t ; i++)
-	{
-		tmp = rooms_t->content;
-		ft_printf("name:%s x:%d y:%d flag:%d next:%p\n",
-		tmp->name,	tmp->x, tmp->y, tmp->flag, rooms_t->next);
-		rooms_t = rooms_t->next;
-	}
+
+	/* Debug Printing */
+	disp_rooms(rooms);
 	ft_printf("start:%p end:%p\n", info.start, info.end);
+
 	ft_lstdel(&rooms, del_room);
-	ft_lstdel(&input, del_lst_string); /* TODO proper functions */
+	ft_lstdel(&input, del_lst_string);
 	return (0);
 }

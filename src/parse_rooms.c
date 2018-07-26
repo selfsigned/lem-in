@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:16:40 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/25 22:32:25 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/07/26 16:13:04 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int				parse_rooms(t_list *input, t_info *info, t_list **rooms)
 			flag = nil;
 			room_count++;
 		}
+		else if (!((char*)input->content) || ((char*)input->content)[0] != '#')
+			return (-1);
 		if (ft_strnstr(input->content, START_S, ft_strlen(START_S)))
 			flag = start;
 		else if (ft_strnstr(input->content, END_S, ft_strlen(END_S)))
