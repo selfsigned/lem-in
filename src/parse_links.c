@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:13:55 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/28 18:55:23 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/08/08 04:08:29 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,13 @@ int		parse_links(t_list *input, t_list **rooms)
 		}
 		input = input->next;
 	}
+
+	/* DEBUG */
+	t_room *tmp;
+	if ((tmp = get_room_by_name(*rooms, "7")))
+	{
+		ft_printf("room %s found, addr: %p\n", tmp->name, tmp);
+	}
+
 	return (1);
 }
