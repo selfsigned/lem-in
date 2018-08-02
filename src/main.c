@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/26 16:36:38 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/08/08 04:12:14 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,14 @@ int				main(void)
 		ft_lstdel(&input, del_lst_string);
 		return (print_error());
 	}
+	rooms_t = rooms;
+	rooms = rooms->next;
+	free(rooms_t);
 	if (!parse_links(input, &rooms))
 	{
 		ft_lstdel(&input, del_lst_string);
 		return (print_error());
 	}
-	rooms_t = rooms;
-	rooms = rooms->next;
-	free(rooms_t);
 
 	/* Debug Printing */
 	disp_rooms(rooms);
