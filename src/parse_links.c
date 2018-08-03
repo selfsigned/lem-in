@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:13:55 by xperrin           #+#    #+#             */
-/*   Updated: 2018/08/08 04:08:29 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/08/08 06:06:11 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,44 @@ static	int		is_link(char *s)
 
 }
 
-int		parse_links(t_list *input, t_list **rooms)
+static	int		append_link(t_list **rooms, char **input)
 {
+	t_room	*src;
+	t_room	*dst;
+
+	src = get_room(*rooms, input[0]);
+	dst = get_room(*rooms, input[1]);
+	ft_printf("%s %s\n", src->name, dst->name);
+	if (!src || !dst)
+	{
+		ft_putendl("room missing!");
+		return (0);
+	}
+	return (1);
+}
+
+int				parse_links(t_list *input, t_list **rooms)
+{
+	char	**link_rooms;
+	int		i;
+
 	while (input)
 	{
+		i = 0;
 		if (is_link(input->content))
 		{
-			ft_putendl(input->content);
+			link_rooms = ft_strsplit(input->content, '-');
+			while (link_rooms[i])
+				++i;
+			if (i != 2)
+			{
+				/* TODO handle error case gracefully */
+				ft_putendl("error!");
+			}
+			append_link(rooms, link_rooms);
+			ft_strdeltab(link_rooms, i);
 		}
 		input = input->next;
 	}
-
-	/* DEBUG */
-	t_room *tmp;
-	if ((tmp = get_room_by_name(*rooms, "7")))
-	{
-		ft_printf("room %s found, addr: %p\n", tmp->name, tmp);
-	}
-
 	return (1);
 }

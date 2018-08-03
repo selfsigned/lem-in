@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/08/08 03:57:07 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/08/08 06:06:28 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void			del_room(void *room, size_t len);
 /*
 ** helpers.c
 */
-t_room			*get_room_by_name(t_list *rooms, char *name);
+t_room			*get_room(t_list *rooms, char *name);
 
 #endif
