@@ -6,11 +6,13 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:13:55 by xperrin           #+#    #+#             */
-/*   Updated: 2018/08/08 06:06:11 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/08/08 19:59:27 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+#include "printf.h" /* DEBUG */
 
 static	int		is_link(char *s)
 {
@@ -30,14 +32,28 @@ static	int		append_link(t_list **rooms, char **input)
 {
 	t_room	*src;
 	t_room	*dst;
+	t_list	*tmp_list;
 
 	src = get_room(*rooms, input[0]);
 	dst = get_room(*rooms, input[1]);
-	ft_printf("%s %s\n", src->name, dst->name);
 	if (!src || !dst)
-	{
-		ft_putendl("room missing!");
 		return (0);
+	ft_printf("%s %s\n", src->name, dst->name);
+	if (!src->links)
+	{
+		if (!(src->links = ft_lstnew(dst, sizeof(t_room))))
+			return (0);
+		/* t_room *content = src->links->content; */
+		/* ft_printf("%p name: %s flag: %d\n", src->links->content, content->name, content->flag); */
+	}
+	else
+	{
+		if (!(tmp_list = ft_lstnew(dst, sizeof(t_room))))
+			return (0);
+		/* src->links->next = tmp_list; */
+		ft_lstappend(&src->links, tmp_list);
+		t_room *content = src->links->content;
+		ft_printf("%p name: %s flag: %d next:%p\n", src->links->content, content->name, content->flag, src->links->next);
 	}
 	return (1);
 }

@@ -6,11 +6,12 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/08/08 04:12:14 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/08/08 19:43:03 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+#include "printf.h"
 #include <stdlib.h>
 
 static	size_t	parse_ant_number(void)
@@ -55,12 +56,20 @@ static int		read_input(t_list **list)
 static	void	disp_rooms(t_list *rooms)
 {
 	t_room	*tmp;
+	t_room	*tmp_link;
 
 	while (rooms)
 	{
 		tmp = rooms->content;
-		ft_printf("name:%.5s x:%.02d y:%.02d flag:%d next:%p\n",
-		tmp->name,	tmp->x, tmp->y, tmp->flag, rooms->next);
+		ft_printf("name:%.5s x:%.02d y:%.02d flag:%d links:",
+		tmp->name,	tmp->x, tmp->y, tmp->flag);
+		while (tmp->links)
+		{
+			tmp_link = tmp->links->content;
+			ft_printf("(n:%s f:%d a:%p) ", tmp_link->name, tmp_link->flag, tmp_link);
+			tmp->links = tmp->links->next;
+		}
+		ft_printf("next:%p\n", rooms->next);
 		rooms = rooms->next;
 	}
 }

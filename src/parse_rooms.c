@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:16:40 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/26 16:13:04 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/08/08 06:14:35 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static	t_room	create_room(char *input, t_posflag flag)
 	room.name = ft_strdup(s[0]);
 	room.x = ft_atoi(s[1]);
 	room.y = ft_atoi(s[2]);
+	room.links = NULL;
 	ft_strdeltab(s, 3);
 	return (room);
 }
@@ -74,6 +75,7 @@ int				parse_rooms(t_list *input, t_info *info, t_list **rooms)
 	{
 		if (is_room(input->content))
 		{
+			/* TODO: turn this mess into a function */
 			new_room = create_room(input->content, flag);
 			r_list = ft_lstnew(&new_room, sizeof(t_room));
 			info->start = (flag == start) ? r_list : info->start;
