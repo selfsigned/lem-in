@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 17:35:26 by xperrin           #+#    #+#             */
-/*   Updated: 2018/07/25 22:40:04 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/08/13 09:16:22 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,16 @@ void	del_void(void *nothing, size_t len)
 void	del_room(void *room, size_t len)
 {
 	t_room *r;
+	t_list	*tmp;
 
 	r = room;
 	(void)len;
+	while (r->links)
+	{
+		tmp = r->links;
+		r->links = r->links->next;
+		free(tmp);
+	}
 	free(r->name);
 	free(r);
 }

@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/08/08 19:43:03 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/08/13 09:22:57 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,20 @@ static	void	disp_rooms(t_list *rooms)
 {
 	t_room	*tmp;
 	t_room	*tmp_link;
+	t_list	*node;
 
 	while (rooms)
 	{
 		tmp = rooms->content;
 		ft_printf("name:%.5s x:%.02d y:%.02d flag:%d links:",
 		tmp->name,	tmp->x, tmp->y, tmp->flag);
-		while (tmp->links)
+		node = tmp->links;
+		while (node)
 		{
-			tmp_link = tmp->links->content;
-			ft_printf("(n:%s f:%d a:%p) ", tmp_link->name, tmp_link->flag, tmp_link);
-			tmp->links = tmp->links->next;
+			tmp_link = node->content;
+			ft_printf("(n:%s f:%d a:%p) ",
+				tmp_link->name, tmp_link->flag, tmp_link);
+			node = node->next;
 		}
 		ft_printf("next:%p\n", rooms->next);
 		rooms = rooms->next;
