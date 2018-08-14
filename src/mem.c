@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 17:35:26 by xperrin           #+#    #+#             */
-/*   Updated: 2018/08/13 09:16:22 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/08/13 13:54:55 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	del_room(void *room, size_t len)
 	{
 		tmp = r->links;
 		r->links = r->links->next;
+		free(tmp->content);
 		free(tmp);
 	}
 	free(r->name);
