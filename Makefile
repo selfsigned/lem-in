@@ -6,12 +6,12 @@
 #    By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 23:57:19 by xperrin           #+#    #+#              #
-#    Updated: 2018/08/13 09:27:07 by xperrin          ###   ########.fr        #
+#    Updated: 2018/08/17 16:19:18 by xperrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
-CFLAGS = -Wextra -Wall -g -fsanitize=address #-Werror
+CFLAGS = -Wextra -Wall -g #-Werror
 LDFLAGS = -L$(LIB) -lft
 
 LIB = libft
