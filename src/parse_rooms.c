@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:16:40 by xperrin           #+#    #+#             */
-/*   Updated: 2018/08/08 06:14:35 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/02 05:31:03 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static	int		is_room(char *s)
 	i = 0;
 	if (s[i] == 'L' || s[i] == '#')
 		return (0);
-	while (s[i] && ft_isalnum(s[i]))
+	while (s[i] && s[i] != ' ')
 		i++;
 	if (!i || s[i] != ' ')
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/02 05:07:46 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/02 05:15:38 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,23 @@ static	size_t	parse_ant_number(void)
 	char	*tmp;
 	int		r;
 
+	tmp = NULL;
 	while (get_next_line(0, &tmp) >= 0)
 	{
+		if (!tmp)
+			break;
 		if (tmp[0] == '#')
 		{
 			free(tmp);
 			continue;
 		}
-		r = ft_atoi(tmp);
-		free(tmp);
-		if (r > 0)
-			return ((size_t)r);
+		else
+		{
+			r = ft_atoi(tmp);
+			free(tmp);
+			if (r > 0)
+				return ((size_t)r);
+		}
 	}
 	return (0);
 }
