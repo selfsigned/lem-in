@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:13:55 by xperrin           #+#    #+#             */
-/*   Updated: 2018/08/17 16:27:52 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/02 05:45:30 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	int		is_link(char *s)
 	size_t	i;
 
 	i = 0;
-	while (s[i] && ft_isalnum(s[i]))
+	while (s[i] && s[i] != '-')
 		i++;
 	if (!i || !s[i] || s[i] != '-'
 		|| !s[i + 1] || !ft_isalnum(s[i + 1]))
