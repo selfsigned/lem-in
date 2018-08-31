@@ -6,7 +6,7 @@
 #    By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 23:57:19 by xperrin           #+#    #+#              #
-#    Updated: 2018/08/17 16:19:18 by xperrin          ###   ########.fr        #
+#    Updated: 2018/09/02 06:34:08 by xperrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCDIR = src
 
 SRC = main.c \
       mem.c \
+      input.c \
       helpers.c \
       parse_rooms.c \
       parse_links.c

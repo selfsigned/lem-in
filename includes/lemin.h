@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/08/08 06:06:28 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/02 06:32:12 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ typedef struct	s_link
 {
 	t_list		*link;
 }				t_link;
+
+/*
+** input.c
+*/
+size_t			parse_ant_number(void);
+int				read_input(t_list **list);
 
 int				print_error(void);
 int				parse_rooms(t_list *input, t_info *info, t_list **rooms);
