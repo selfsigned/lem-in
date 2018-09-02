@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/02 17:53:42 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/02 18:48:23 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int				main(void)
 	t_list	*rooms;
 	t_list	*rooms_t;
 
+	/* Parsing */
 	if (!(info.ants = parse_ant_number()))
 		return (print_error());
 	if (!read_input(&input))
@@ -69,10 +70,14 @@ int				main(void)
 		return (print_error());
 	}
 
+	/* Algorithm */
+	algo_init(&rooms);
+
 	/* Parser Debug Printing */
 	disp_rooms(rooms);
 	ft_printf("start:%p end:%p\n", info.start, info.end);
 
+	/* Memory */
 	ft_lstdel(&rooms, del_room);
 	ft_lstdel(&input, del_lst_string);
 	return (0);

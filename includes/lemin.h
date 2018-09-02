@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/02 17:57:13 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/02 18:44:41 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,19 @@ typedef struct	s_info
 	t_list		*end;
 }				t_info;
 
+typedef struct	s_algo
+{
+	int			distance;
+	int			is_visited;
+}				t_algo;
+
 typedef struct	s_room
 {
 	char		*name;
 	int			x;
 	int			y;
 	t_posflag	flag;
+	t_algo		ai;
 	t_list		*links;
 }				t_room;
 
@@ -50,14 +57,23 @@ typedef struct	s_link
 }				t_link;
 
 /*
+** main.c
+*/
+int				print_error(void);
+/*
 ** input.c
 */
 size_t			parse_ant_number(void);
 int				read_input(t_list **list);
-
-int				print_error(void);
+/*
+** parse_*.c
+*/
 int				parse_rooms(t_list *input, t_info *info, t_list **rooms);
 int				parse_links(t_list *input, t_list **rooms);
+/*
+** algo_utils.c
+*/
+int				algo_init(t_list **rooms);
 /*
 ** mem.c
 */
