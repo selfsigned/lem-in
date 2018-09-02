@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/02 06:33:23 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/02 17:53:42 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static	void	disp_rooms(t_list *rooms)
 	{
 		tmp = rooms->content;
 		ft_printf("name:%.5s x:%.02d y:%.02d flag:%d links:",
-		tmp->name,	tmp->x, tmp->y, tmp->flag);
+		tmp->name, tmp->x, tmp->y, tmp->flag);
 		node = tmp->links;
 		while (node)
 		{
@@ -69,7 +69,7 @@ int				main(void)
 		return (print_error());
 	}
 
-	/* Debug Printing */
+	/* Parser Debug Printing */
 	disp_rooms(rooms);
 	ft_printf("start:%p end:%p\n", info.start, info.end);
 

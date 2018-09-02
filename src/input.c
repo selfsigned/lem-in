@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 06:30:03 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/02 06:33:05 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/02 17:54:48 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	parse_ant_number(void)
 	while (get_next_line(0, &tmp) >= 0)
 	{
 		if (!tmp)
-			break;
+			break ;
 		if (tmp[0] == '#')
 		{
 			free(tmp);
@@ -47,7 +47,7 @@ int		read_input(t_list **list)
 
 	if (get_next_line(0, &line) <= 0)
 		return (0);
-	*list = ft_lstnew(line,  sizeof(char) * (ft_strlen(line) + 1));
+	*list = ft_lstnew(line, sizeof(char) * (ft_strlen(line) + 1));
 	tmp_list = *list;
 	free(line);
 	while (get_next_line(0, &line) > 0)

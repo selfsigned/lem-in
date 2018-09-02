@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:13:55 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/02 05:45:30 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/02 17:56:19 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static	int		is_link(char *s)
 		|| !s[i + 1] || !ft_isalnum(s[i + 1]))
 		return (0);
 	return (1);
-
 }
 
 static	int		append_link(t_list **rooms, char **input)
@@ -64,10 +63,7 @@ int				parse_links(t_list *input, t_list **rooms)
 			while (link_rooms[i])
 				++i;
 			if (i != 2)
-			{
-				/* TODO handle error case gracefully */
-				ft_putendl("error!");
-			}
+				ft_putendl("TODO error!");
 			append_link(rooms, link_rooms);
 			ft_strdeltab(link_rooms, i);
 		}

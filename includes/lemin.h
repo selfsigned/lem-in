@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/02 06:32:12 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/02 17:57:13 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				parse_links(t_list *input, t_list **rooms);
 ** mem.c
 */
 void			del_lst_string(void	*str, size_t len);
-void			del_void(void *nothing ,size_t len);
+void			del_void(void *nothing, size_t len);
 void			del_room(void *room, size_t len);
 /*
 ** helpers.c
