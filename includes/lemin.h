@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/02 18:44:41 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/05 01:04:07 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define END_S "##end"
 
 # define ERROR_S "ERROR\n"
+
+# define INF -1
 
 typedef enum	e_posflag
 {
@@ -37,8 +39,8 @@ typedef struct	s_info
 
 typedef struct	s_algo
 {
-	int			distance;
 	int			is_visited;
+	int			distance;
 }				t_algo;
 
 typedef struct	s_room
@@ -71,9 +73,13 @@ int				read_input(t_list **list);
 int				parse_rooms(t_list *input, t_info *info, t_list **rooms);
 int				parse_links(t_list *input, t_list **rooms);
 /*
+** algo.c
+*/
+void			dijkstra(t_list **rooms, t_list **unvisited, t_room *src);
+/*
 ** algo_utils.c
 */
-int				algo_init(t_list **rooms);
+int				algo_init(t_list **rooms, t_info info);
 /*
 ** mem.c
 */
