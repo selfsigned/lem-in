@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/05 01:04:07 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/05 18:41:02 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_algo
 {
 	int			is_visited;
 	int			distance;
+	void		*previous;
 }				t_algo;
 
 typedef struct	s_room
@@ -80,6 +81,8 @@ void			dijkstra(t_list **rooms, t_list **unvisited, t_room *src);
 ** algo_utils.c
 */
 int				algo_init(t_list **rooms, t_info info);
+int				algo_del_visited(t_list **unvisited, char *name);
+t_list			*algo_get_queue(t_list **unvisited, char *name);
 /*
 ** mem.c
 */
