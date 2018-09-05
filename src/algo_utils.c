@@ -6,12 +6,14 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 18:31:04 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/05 18:52:20 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/05 22:29:57 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include <stdlib.h>
+
+#include "printf.h"
 
 t_list			*algo_get_queue(t_list **unvisited, char *name)
 {
@@ -49,7 +51,6 @@ int				algo_del_visited(t_list **unvisited, char *name)
 			prev->next = node->next;
 		else
 			*unvisited = node->next;
-#include "printf.h"
 		ft_printf("Free'd room %s in unvisited set\n", name); /* DEBUG */
 		free(node);
 		return (1);
@@ -69,9 +70,9 @@ static int		algo_init_struct(t_list **rooms, t_list **unvisited)
 	while (node)
 	{
 		r = node->content;
-		r->ai.distance = INF;
-		r->ai.is_visited = 0;
-		r->ai.previous = NULL;
+		r->distance = INF;
+		r->is_visited = 0;
+		r->previous = NULL;
 		if (node != *rooms)
 			ft_lstappend(unvisited, ft_lstnew(node->content, sizeof(t_room)));
 		node = node->next;

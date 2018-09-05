@@ -6,7 +6,7 @@
 #    By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 23:57:19 by xperrin           #+#    #+#              #
-#    Updated: 2018/09/02 18:46:14 by xperrin          ###   ########.fr        #
+#    Updated: 2018/09/05 22:21:08 by xperrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBINC = -I$(LIB)/includes
 LIBAR = libft/libft.a
 
 INCDIR = includes
-INCFILES = lemin.h
+INCFILES = lemin.h lemin_structs.h
 INCFULL = $(addprefix $(INCDIR)/, $(INCFILES))
 INC = $(addprefix -I, $(INCDIR)) $(LIBINC)
 SRCDIR = src
