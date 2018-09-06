@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 18:31:04 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/06 19:41:12 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/06 21:52:19 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@ int				algo_init(t_list **rooms, t_info info)
 	ft_lstiter(*rooms, &algo_set_distance);
 	s = info.start->content;
 	s->distance = 0;
-	dijkstra(rooms, s);
+	while (s != info.end->content)
+	{
+		if (s->links) // && ((t_room*)s->links->next)->distance == INF)
+		{
+			dijkstra(rooms, s);
+			/* s->links = s->links->next; */
+			s = s->links->content;
+		}
+		else
+			return (0);
+	}
 	return (1);
 }
