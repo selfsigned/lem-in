@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/06 19:38:55 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/06 23:17:17 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		parse_links(t_list *input, t_list **rooms);
 /*
 ** algo.c
 */
-void	dijkstra(t_list **rooms, t_room *start);
+void	dijkstra(t_room *start);
 /*
 ** algo_utils.c
 */
