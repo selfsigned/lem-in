@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:13:55 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/02 17:56:19 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/06 17:59:52 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,10 @@ static	int		is_link(char *s)
 	return (1);
 }
 
-static	int		append_link(t_list **rooms, char **input)
+static	int		create_link(t_room *src, t_room *dst)
 {
-	t_room	*src;
-	t_room	*dst;
 	t_list	*tmp_list;
 
-	src = get_room(*rooms, input[0]);
-	dst = get_room(*rooms, input[1]);
-	if (!src || !dst)
-		return (0);
 	if (!src->links)
 	{
 		if (!(src->links = ft_lstnew(dst, sizeof(t_room))))
@@ -45,6 +39,28 @@ static	int		append_link(t_list **rooms, char **input)
 		if (!(tmp_list = ft_lstnew(dst, sizeof(t_room))))
 			return (0);
 		ft_lstappend(&src->links, tmp_list);
+	}
+	return (1);
+}
+
+static	int		append_link(t_list **rooms, char **input)
+{
+	t_room	*src;
+	t_room	*dst;
+
+	src = get_room(*rooms, input[0]);
+	dst = get_room(*rooms, input[1]);
+	if (!src || !dst)
+		return (0);
+	if (!get_room(src->links, input[1]))
+	{
+		if (!create_link(src, dst))
+			return (0);
+	}
+	if (!get_room(dst->links, input[0]))
+	{
+		if (!create_link(dst, src))
+			return (0);
 	}
 	return (1);
 }

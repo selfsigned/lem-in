@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 18:31:04 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/05 22:29:57 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/06 15:11:15 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ int				algo_init(t_list **rooms, t_info info)
 {
 	t_list *unvisited;
 
-	if (!algo_init_struct(rooms, &unvisited))
-		return (0);
-	dijkstra(rooms, &unvisited, info.start->content);
+	/* if (!algo_init_struct(rooms, &unvisited)) */
+	/* 	return (0); */
+	/* dijkstra(rooms, &unvisited, info.start->content); */
 
 	/* memory stuff */
 	/* ft_lstdel(&unvisited, del_void); */
