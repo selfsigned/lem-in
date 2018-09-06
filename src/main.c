@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/06 17:36:25 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/06 18:30:11 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ static	void	disp_rooms(t_list *rooms)
 	while (rooms)
 	{
 		tmp = rooms->content;
-		/* ft_printf("visit:%d name:%.5s x:%.02d y:%.02d flag:%d links:", */
-		/* tmp->is_visited, tmp->name, tmp->x, tmp->y, tmp->flag); */
-		ft_printf("name:%.5s x:%.02d y:%.02d flag:%d links:",
-			tmp->name, tmp->x, tmp->y, tmp->flag);
+		ft_printf("name:%.5s x:%.02d y:%.02d distance:%d  flag:%d links:",
+			tmp->name, tmp->x, tmp->y, tmp->distance, tmp->flag);
 		node = tmp->links;
 		while (node)
 		{
