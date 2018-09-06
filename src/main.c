@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/06 18:30:11 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/06 20:13:38 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static	void	disp_rooms(t_list *rooms)
 				tmp_link->name, tmp_link->flag, tmp_link);
 			node = node->next;
 		}
-		ft_printf("next:%p\n", rooms->next);
+		ft_printf("addr:%p\n", rooms->content);
 		rooms = rooms->next;
 	}
 }
@@ -75,7 +75,7 @@ int				main(void)
 
 	/* Parser Debug Printing */
 	disp_rooms(rooms);
-	ft_printf("start:%p end:%p\n", info.start, info.end);
+	ft_printf("start:%p end:%p\n", info.start->content, info.end->content);
 
 	/* Memory */
 	ft_lstdel(&rooms, del_room);

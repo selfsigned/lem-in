@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 18:31:04 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/06 18:36:32 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/06 19:41:12 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ static	void	algo_set_distance(t_list *elem)
 
 int				algo_init(t_list **rooms, t_info info)
 {
+	t_room	*s;
 
 	ft_lstiter(*rooms, &algo_set_distance);
-	/* if (!algo_init_struct(rooms, &unvisited)) */
-	/* 	return (0); */
-	dijkstra(rooms, info.start->content);
-
-	/* memory stuff */
-	/* ft_lstdel(&unvisited, del_void); */
+	s = info.start->content;
+	s->distance = 0;
+	dijkstra(rooms, s);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:13:55 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/06 17:59:52 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/06 20:39:06 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,18 @@ static	int		create_link(t_room *src, t_room *dst)
 
 	if (!src->links)
 	{
-		if (!(src->links = ft_lstnew(dst, sizeof(t_room))))
-			return (0);
+		/* TODO: func for this shit */
+		tmp_list = (t_list*)ft_memalloc(sizeof(*tmp_list));
+		tmp_list->content = dst;
+		tmp_list->content_size = sizeof(dst);
+		src->links = tmp_list;
 	}
 	else
 	{
-		if (!(tmp_list = ft_lstnew(dst, sizeof(t_room))))
-			return (0);
+		/* TODO: func for this shit */
+		tmp_list = (t_list*)ft_memalloc(sizeof(*tmp_list));
+		tmp_list->content = dst;
+		tmp_list->content_size = sizeof(dst);
 		ft_lstappend(&src->links, tmp_list);
 	}
 	return (1);
