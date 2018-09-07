@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/06 22:05:18 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/07 15:34:13 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int				main(void)
 	}
 
 	/* Algorithm */
-	algo_init(&rooms, info);
+	dijkstra(&rooms, info);
 
 	/* Parser Debug Printing */
 	disp_rooms(rooms);

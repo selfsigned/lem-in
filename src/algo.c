@@ -6,13 +6,22 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 18:30:33 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/06 23:17:28 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/07 15:36:41 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void				dijkstra(t_room *start)
+static	void	algo_set_distance(t_list *elem)
+{
+	t_room	*room;
+
+	room = elem->content;
+	if (room)
+		room->distance = INF;
+}
+
+static void		assign_dist(t_room *start)
 {
 	t_list		*node;
 	t_room		*c;
@@ -26,9 +35,21 @@ void				dijkstra(t_room *start)
 		if (c->distance > distance)
 		{
 			c->distance = distance;
-			dijkstra(c);
+			assign_dist(c);
 		}
-		ft_putendl(c->name); /* DEBUG */
 		node = node->next;
 	}
+}
+
+int				dijkstra(t_list **rooms, t_info info)
+{
+	t_room	*s;
+
+	ft_lstiter(*rooms, &algo_set_distance);
+	s = info.start->content;
+	s->distance = 0;
+	assign_dist(info.start->content);
+	if (((t_room*)info.end->content)->distance == INF)
+		ft_putendl("No path found");
+	return (1);
 }
