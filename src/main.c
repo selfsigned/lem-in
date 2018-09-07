@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/07 15:34:13 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/07 22:48:11 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,30 @@
 #include "printf.h"
 #include <stdlib.h>
 
-static	void	disp_rooms(t_list *rooms)
+static void		init_info(t_info *info)
 {
-	t_room	*tmp;
-	t_room	*tmp_link;
-	t_list	*node;
-
-	while (rooms)
-	{
-		tmp = rooms->content;
-		ft_printf("name:%.5s x:%.02d y:%.02d distance:%d  flag:%d links:",
-			tmp->name, tmp->x, tmp->y, tmp->distance, tmp->flag);
-		node = tmp->links;
-		while (node)
-		{
-			tmp_link = node->content;
-			ft_printf("(n:%s f:%d a:%p) ",
-				tmp_link->name, tmp_link->flag, tmp_link);
-			node = node->next;
-		}
-		ft_printf("addr:%p\n", rooms->content);
-		rooms = rooms->next;
-	}
+	info->error = 0;
+	info->debug = 0;
+	info->ants = 0;
+	info->start = NULL;
+	info->end = NULL;
 }
 
-int				print_error(void)
+static int		logic(t_info *info)
 {
-	ft_putstr(ERROR_S);
-	return (1);
-}
-
-int				main(void)
-{
-	t_info	info;
 	t_list	*input;
 	t_list	*rooms;
 	t_list	*rooms_t;
 
 	/* Parsing */
-	if (!(info.ants = parse_ant_number()))
-		return (print_error());
+	if (!(info->ants = parse_ant_number()))
+		return (print_error(ERROR_ANTS, *info));
 	if (!read_input(&input))
-		return (print_error());
-	if (!parse_rooms(input, &info, &rooms))
+		return (print_error(ERROR_INPUT, *info));
+	if (!parse_rooms(input, info, &rooms))
 	{
 		ft_lstdel(&input, del_lst_string);
-		return (print_error());
+		return (print_error(ERROR_ROOMS, *info));
 	}
 	rooms_t = rooms;
 	rooms = rooms->next;
@@ -67,18 +45,38 @@ int				main(void)
 	if (!parse_links(input, &rooms))
 	{
 		ft_lstdel(&input, del_lst_string);
-		return (print_error());
+		/* ft_lstdel(&rooms, del_room); */
+		return (print_error(ERROR_LINKS, *info));
 	}
-
 	/* Algorithm */
-	dijkstra(&rooms, info);
-
-	/* Parser Debug Printing */
-	disp_rooms(rooms);
-	ft_printf("start:%p end:%p\n", info.start->content, info.end->content);
-
+	if (!dijkstra(&rooms, info))
+	{
+		(info->debug) ? debug_disp_rooms(rooms) : (void)42;
+		return (print_error(ERROR_ALGO, *info));
+	}
+	(info->debug) ? debug_disp_rooms(rooms) : (void)42;
 	/* Memory */
 	ft_lstdel(&rooms, del_room);
 	ft_lstdel(&input, del_lst_string);
 	return (0);
+}
+
+int			main(int ac, char**av)
+{
+	t_info	info;
+
+	init_info(&info);
+	if (ac > 1)
+		while (ac-- != 0)
+		{
+			if (!ft_strcmp(DEBUG_A, av[ac]) || !ft_strcmp("-d", av[ac]))
+
+				info.debug = 1;
+			if (!ft_strcmp(HELP_A, av[ac]) || !ft_strcmp("-h", av[ac]))
+			{
+				ft_putendl(HELP_USAGE HELP_OPT HELP_DEBUG HELP_HELP HELP_BAN);
+				return (0);
+			}
+		}
+	logic(&info);
 }

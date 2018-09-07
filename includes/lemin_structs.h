@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 22:19:26 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/06 18:23:53 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/07 21:48:25 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ typedef enum	e_posflag
 
 typedef struct	s_info
 {
-	size_t		ants;
 	int			error;
+	int			debug;
+	size_t		ants;
 	t_list		*start;
 	t_list		*end;
 }				t_info;
