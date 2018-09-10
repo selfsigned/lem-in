@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:16:40 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/06 23:29:44 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/08 01:37:23 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,42 @@ static	t_room	create_room(char *input, t_posflag flag)
 	return (room);
 }
 
-int				parse_rooms(t_list *input, t_info *info, t_list **rooms)
+static int		append_room(char *s, t_list **rooms,
+					t_info *info, t_posflag flag)
+{
+	static	int	head = 0;
+	t_room		r;
+	t_list		*link;
+
+	r = create_room(s, flag);
+	if (!r.name)
+		return (0);
+	if (!(link = ft_lstnew(&r, sizeof(t_room))))
+		return (0);
+	if (head)
+		ft_lstappend(rooms, link);
+	else
+		*rooms = link;
+	if (flag == start)
+		info->start = link;
+	else if (flag == end)
+		info->end = link;
+	head++;
+	return (1);
+}
+
+int		parse_rooms(t_list *input, t_info *info, t_list **rooms)
 {
 	size_t		room_count;
 	t_posflag	flag;
-	t_room		new_room;
-	t_list		*r_list;
-	t_list		*tmp_list;
 
 	room_count = 0;
 	flag = nil;
-	*rooms = ft_lstnew(NULL, sizeof(NULL));
-	tmp_list = *rooms;
-	info->start = NULL;
-	info->end = NULL;
 	while (input)
 	{
 		if (is_room(input->content))
 		{
-			/* TODO: turn this mess into a function */
-			new_room = create_room(input->content, flag);
-			r_list = ft_lstnew(&new_room, sizeof(t_room));
-			info->start = (flag == start) ? r_list : info->start;
-			info->end = (flag == end) ? r_list : info->end;
-			tmp_list->next = r_list;
-			tmp_list = tmp_list->next;
+			append_room(input->content, rooms, info, flag);
 			flag = nil;
 			room_count++;
 		}

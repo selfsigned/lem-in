@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/07 22:49:23 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/07 22:52:25 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define HELP_USAGE "Usage: ./lem-in [OPTION] < [FILE]"
 # define HELP_OPT "\n\nOptions:"
 # define HELP_DEBUG "\n\t--debug -d\t display debug information"
-# define HELP_HELP "\n\t--help -h\t display this help"
+# define HELP_HELP "\n\t--help -h\t display this help and exit"
 # define HELP_BAN "\n\nCopyright (c) 2018 Xavier Perrin (GPL3)"
 
 # define ERROR_S "ERROR"

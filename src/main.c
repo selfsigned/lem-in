@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/07 22:48:11 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/08 01:30:34 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "printf.h"
 #include <stdlib.h>
 
-static void		init_info(t_info *info)
+static	void		init_info(t_info *info)
 {
 	info->error = 0;
 	info->debug = 0;
@@ -23,11 +23,10 @@ static void		init_info(t_info *info)
 	info->end = NULL;
 }
 
-static int		logic(t_info *info)
+static	int		logic(t_info *info)
 {
 	t_list	*input;
 	t_list	*rooms;
-	t_list	*rooms_t;
 
 	/* Parsing */
 	if (!(info->ants = parse_ant_number()))
@@ -39,13 +38,10 @@ static int		logic(t_info *info)
 		ft_lstdel(&input, del_lst_string);
 		return (print_error(ERROR_ROOMS, *info));
 	}
-	rooms_t = rooms;
-	rooms = rooms->next;
-	free(rooms_t);
 	if (!parse_links(input, &rooms))
 	{
 		ft_lstdel(&input, del_lst_string);
-		/* ft_lstdel(&rooms, del_room); */
+		ft_lstdel(&rooms, del_room);
 		return (print_error(ERROR_LINKS, *info));
 	}
 	/* Algorithm */
@@ -70,7 +66,6 @@ int			main(int ac, char**av)
 		while (ac-- != 0)
 		{
 			if (!ft_strcmp(DEBUG_A, av[ac]) || !ft_strcmp("-d", av[ac]))
-
 				info.debug = 1;
 			if (!ft_strcmp(HELP_A, av[ac]) || !ft_strcmp("-h", av[ac]))
 			{
@@ -78,5 +73,5 @@ int			main(int ac, char**av)
 				return (0);
 			}
 		}
-	logic(&info);
+	return (logic(&info));
 }
