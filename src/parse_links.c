@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:13:55 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/07 23:55:18 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/11 01:18:41 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ static	int		create_link(t_room *src, t_room *dst)
 
 	if (!src->links)
 	{
-		if (!(tmp_list = ft_lstnewl(dst)))
+		if (!(tmp_list = ft_lstnewl(&dst)))
 			return (0);
-		src->links = ft_lstnewl(dst);
+		src->links = tmp_list;
 	}
 	else
 	{
-		if (!(tmp_list = ft_lstnewl(dst)))
+		if (!(tmp_list = ft_lstnewl(&dst)))
 			return (0);
 		ft_lstappend(&src->links, tmp_list);
 	}
