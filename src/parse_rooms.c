@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:16:40 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 01:11:02 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/11 18:08:21 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int		append_room(char *s, t_list **rooms,
 	return (1);
 }
 
-int		parse_rooms(t_list *input, t_info *info, t_list **rooms)
+int				parse_rooms(t_list *input, t_info *info, t_list **rooms)
 {
 	size_t		room_count;
 	t_posflag	flag;

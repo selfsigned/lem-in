@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 03:48:44 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 15:58:09 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/11 18:07:51 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,3 @@ int			print_error(char *msg, t_info info)
 		ft_putendl(ERROR_S);
 	return (1);
 }
-

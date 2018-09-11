@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 15:54:08 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/11 18:14:58 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "printf.h"
 #include <stdlib.h>
 
-static	void		init_info(t_info *info)
+static	void	init_info(t_info *info)
 {
 	info->error = 0;
 	info->debug = 0;
@@ -44,7 +44,6 @@ static	int		logic(t_info *info)
 		return (print_error(ERROR_LINKS, *info));
 	}
 	ft_lstdel(&input, del_lst_string);
-	/* Algorithm */
 	if (!dijkstra(&rooms, info))
 	{
 		(info->debug) ? debug_disp_rooms(rooms) : (void)42;
@@ -55,7 +54,7 @@ static	int		logic(t_info *info)
 	return (0);
 }
 
-int			main(int ac, char**av)
+int				main(int ac, char **av)
 {
 	t_info	info;
 
@@ -67,7 +66,7 @@ int			main(int ac, char**av)
 				info.debug = 1;
 			if (!ft_strcmp(HELP_A, av[ac]) || !ft_strcmp("-h", av[ac]))
 			{
-				ft_putendl(HELP_USAGE HELP_OPT HELP_DEBUG HELP_HELP HELP_BAN);
+				ft_putendl(HELP_FULL);
 				return (0);
 			}
 		}
