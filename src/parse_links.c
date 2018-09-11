@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:13:55 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 15:29:49 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/11 17:40:15 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static	int		append_link(t_list **rooms, char **input)
 
 	src = get_room(*rooms, input[0]);
 	dst = get_room(*rooms, input[1]);
-	if (!src || !dst)
+	if (!src || !dst || src == dst)
 		return (0);
 	if (!get_room(src->links, input[1]))
 	{

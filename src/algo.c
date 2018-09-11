@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 18:30:33 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/07 22:55:39 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/11 17:45:08 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,35 @@ static void		assign_dist(t_room *start)
 	}
 }
 
-static int		find_path(t_room *end, t_list **dst)
+static int		find_path(t_list **dst, t_info info)
 {
-	(void)end, (void)dst;
+	t_room *room;
+	t_list *links;
+	t_list *tmp;
+	t_room *r;
+	int		mindist;
+
+	room = info.end->content;
+	while (room->flag != start)
+	{
+		ft_putendl(room->name);
+		mindist = INF;
+		links = room->links;
+		while (links)
+		{
+			r = links->content;
+			if (r != room && r->distance < mindist)
+			{
+				tmp = links;
+				mindist = r->distance;
+			}
+			links = links->next;
+		}
+		if (tmp)
+			room = tmp->content;
+		else
+			return (0);
+	}
 	return (1);
 }
 
@@ -57,8 +83,8 @@ int				dijkstra(t_list **rooms, t_info *info)
 	s = info->start->content;
 	s->distance = 0;
 	assign_dist(info->start->content);
-	if (((t_room*)info->end->content)->distance == INF)
+	if (!info->end || ((t_room*)info->end->content)->distance == INF)
 		return (0);
-	find_path(info->end->content, &path);
+	find_path(&path, *info);
 	return (1);
 }

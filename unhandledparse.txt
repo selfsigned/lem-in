@@ -1,0 +1,9 @@
+42
+##start
+a-b 0 0
+##end
+a 0 0
+b 0 0
+a-b-b
+b-a
+a-b
