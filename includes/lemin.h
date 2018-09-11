@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 18:18:36 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/11 18:35:19 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ int		parse_links(t_list *input, t_list **rooms);
 ** algo.c
 */
 int		dijkstra(t_list **rooms, t_info *info);
+/*
+** path.c
+*/
+int		path_create(t_list **dst, t_info info);
 /*
 ** mem.c
 */

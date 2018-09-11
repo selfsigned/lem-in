@@ -6,7 +6,7 @@
 #    By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 23:57:19 by xperrin           #+#    #+#              #
-#    Updated: 2018/09/07 15:37:43 by xperrin          ###   ########.fr        #
+#    Updated: 2018/09/11 18:34:33 by xperrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRC = main.c \
       helpers.c \
       parse_rooms.c \
       parse_links.c \
-      algo.c
+      algo.c \
+      path.c
 
 VPATH= $(SRCDIR)
 OBJDIR = obj
