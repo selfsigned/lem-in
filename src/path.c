@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:32:32 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 18:37:48 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/11 18:47:56 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,18 @@ int				path_create(t_list **dst, t_info info)
 	t_list		*tmp;
 
 	room = info.end->content;
+	if (!(*dst = ft_lstnewl((void**)&room)))
+		return (0);
 	while (room->flag != start)
 	{
-		ft_putendl(room->name);
 		tmp = path_next(room->links, room);
 		if (tmp)
+		{
 			room = tmp->content;
+			if (!(tmp = ft_lstnewl((void**)&room)))
+				return (0);
+			ft_lstappend(dst, tmp);
+		}
 		else
 			return (0);
 	}
