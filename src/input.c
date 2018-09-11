@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 06:30:03 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/03 19:59:28 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/11 15:57:15 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	parse_ant_number(void)
 		if (tmp[0] == '#')
 		{
 			free(tmp);
-			continue;
+			continue ;
 		}
 		else
 		{
@@ -35,7 +35,7 @@ size_t	parse_ant_number(void)
 			if (r > 0)
 				return ((size_t)r);
 			else
-				break;
+				break ;
 		}
 	}
 	return (0);
