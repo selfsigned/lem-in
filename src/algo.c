@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 18:30:33 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/12 13:37:48 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/12 17:05:13 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static void		algo_set_distance(t_list *elem)
 
 	room = elem->content;
 	if (room)
+	{
 		room->distance = INF;
+		room->ant = 0;
+	}
 }
 
 static void		assign_dist(t_room *start)

@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 22:19:26 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/12 16:09:36 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/12 17:22:24 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ typedef struct	s_info
 	int			error;
 	int			quiet;
 	int			debug;
-	size_t		ants;
+	int			ants;
 	t_list		*start;
 	t_list		*end;
 }				t_info;
 
 /*
 ** distance: dijkstra algo distance (INF if unvisited)
+** ant:      is an ant present?
 */
 
 typedef struct	s_room
@@ -42,6 +43,7 @@ typedef struct	s_room
 	int			x;
 	int			y;
 	int			distance;
+	int			ant;
 	t_posflag	flag;
 	t_list		*links;
 

@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/12 16:14:37 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/12 19:16:50 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,6 @@ static	void	init_info(t_info *info)
 	info->ants = 0;
 	info->start = NULL;
 	info->end = NULL;
-}
-
-static	void	print_elem(t_list *elem)
-{
-	char *s;
-
-	s = elem->content;
-	ft_putendl(s);
 }
 
 static	int		logic(t_info *info)
@@ -57,7 +49,7 @@ static	int		logic(t_info *info)
 	{
 		return (print_error(ERROR_ALGO, *info));
 	}
-	if (!(print_n_path(&input, &rooms, info)))
+	if (!(print_n_path(&input, info)))
 		return (print_error(ERROR_ALGO, *info));
 	ft_lstdel(&input, del_lst_string);
 	ft_lstdel(&rooms, del_room);

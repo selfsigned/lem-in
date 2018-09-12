@@ -65,7 +65,7 @@ int		dijkstra(t_list **rooms, t_info *info);
 /*
 ** path.c
 */
-int		print_n_path(t_list **input, t_list **room, t_info *info);
+int		print_n_path(t_list **input, t_info *info);
 /*
 ** mem.c
 */
@@ -77,6 +77,7 @@ void	del_room(void *room, size_t len);
 */
 t_room	*get_room(t_list *rooms, char *name);
 int		print_error(char *msg, t_info info);
+void	print_elem(t_list *elem);
 /*
 ** debug.c
 */

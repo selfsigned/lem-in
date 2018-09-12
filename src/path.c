@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:32:32 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/12 16:10:19 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/12 19:21:12 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,62 @@ static int		path_create(t_list **dst, t_info info)
 	return (1);
 }
 
-int				print_n_path(t_list **input, t_list **room, t_info *info)
+/*
+** path order: end -> to -> start
+*/
+
+static int	move_ants(t_list *path, t_info *info)
+{
+	t_room *r;
+	t_room *p;
+
+	if (!path || !path->next)
+		return (0);
+	r = path->content;
+	p = path->next->content;
+	if (r->flag == end && p->ant)
+	{
+		ft_printf("L%d-%s", p->ant, r->name);
+		p->ant = 0;
+		r->ant++;
+	}
+	else if (p->flag == start && p->ant > 0 && !r->ant)
+	{
+		r->ant = p->ant - (((t_room*)info->end->content)->ant);
+		p->ant--;
+		ft_printf("L%d-%s", r->ant, r->name);
+	}
+	else if (!r->ant && p->ant)
+	{
+		r->ant = p->ant;
+		p->ant = 0;
+		ft_printf("L%d-%s", r->ant, r->name);
+	}
+	else
+		return (0);
+	return (1);
+}
+
+static int	send_ants(t_list *path, t_info *info)
+{
+	t_list	*l;
+
+	while (((t_room*)info->end->content)->ant != info->ants)
+	{
+		l = path;
+		while (l->next)
+		{
+			if (move_ants(l, info))
+				if (l->next)
+					ft_putchar(' ');
+			l = l->next;
+		}
+		ft_putchar('\n');
+	}
+	return (1);
+}
+
+int				print_n_path(t_list **input, t_info *info)
 {
 	t_list		*path;
 
@@ -71,7 +126,10 @@ int				print_n_path(t_list **input, t_list **room, t_info *info)
 	if (!info->quiet)
 	{
 		ft_printf("%d\n", info->ants);
+		ft_lstiter(*input, print_elem);
 	}
+	((t_room*)info->start->content)->ant = info->ants;
+	send_ants(path, info);
 	ft_lstdel(&path, del_void);
 	return (1);
 }
