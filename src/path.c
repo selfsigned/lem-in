@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:32:32 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/12 19:21:12 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/12 22:18:40 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ static int	move_ants(t_list *path, t_info *info)
 		p->ant = 0;
 		r->ant++;
 	}
-	else if (p->flag == start && p->ant > 0 && !r->ant)
+	else if (p->flag == start && info->ants && !r->ant)
 	{
-		r->ant = p->ant - (((t_room*)info->end->content)->ant);
-		p->ant--;
+		r->ant = p->ant;
+		p->ant++;
+		info->ants--;
 		ft_printf("L%d-%s", r->ant, r->name);
 	}
 	else if (!r->ant && p->ant)
@@ -96,8 +97,11 @@ static int	move_ants(t_list *path, t_info *info)
 static int	send_ants(t_list *path, t_info *info)
 {
 	t_list	*l;
+	int		ants_nbr;
 
-	while (((t_room*)info->end->content)->ant != info->ants)
+	ants_nbr = info->ants;
+	info->ants--;
+	while (((t_room*)info->end->content)->ant != ants_nbr)
 	{
 		l = path;
 		while (l->next)
@@ -128,7 +132,7 @@ int				print_n_path(t_list **input, t_info *info)
 		ft_printf("%d\n", info->ants);
 		ft_lstiter(*input, print_elem);
 	}
-	((t_room*)info->start->content)->ant = info->ants;
+	((t_room*)info->start->content)->ant = 1;
 	send_ants(path, info);
 	ft_lstdel(&path, del_void);
 	return (1);
