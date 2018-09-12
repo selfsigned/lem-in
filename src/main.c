@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 18:14:58 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/12 16:14:37 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,18 @@ static	void	init_info(t_info *info)
 {
 	info->error = 0;
 	info->debug = 0;
+	info->quiet = 0;
 	info->ants = 0;
 	info->start = NULL;
 	info->end = NULL;
+}
+
+static	void	print_elem(t_list *elem)
+{
+	char *s;
+
+	s = elem->content;
+	ft_putendl(s);
 }
 
 static	int		logic(t_info *info)
@@ -43,13 +52,14 @@ static	int		logic(t_info *info)
 		ft_lstdel(&rooms, del_room);
 		return (print_error(ERROR_LINKS, *info));
 	}
-	ft_lstdel(&input, del_lst_string);
+	/* TODO memory */
 	if (!dijkstra(&rooms, info))
 	{
-		(info->debug) ? debug_disp_rooms(rooms) : (void)42;
 		return (print_error(ERROR_ALGO, *info));
 	}
-	(info->debug) ? debug_disp_rooms(rooms) : (void)42;
+	if (!(print_n_path(&input, &rooms, info)))
+		return (print_error(ERROR_ALGO, *info));
+	ft_lstdel(&input, del_lst_string);
 	ft_lstdel(&rooms, del_room);
 	return (0);
 }
@@ -64,6 +74,8 @@ int				main(int ac, char **av)
 		{
 			if (!ft_strcmp(DEBUG_A, av[ac]) || !ft_strcmp("-d", av[ac]))
 				info.debug = 1;
+			if (!ft_strcmp(QUIET_A, av[ac]) || !ft_strcmp("-q", av[ac]))
+				info.quiet = 1;
 			if (!ft_strcmp(HELP_A, av[ac]) || !ft_strcmp("-h", av[ac]))
 			{
 				ft_putendl(HELP_FULL);

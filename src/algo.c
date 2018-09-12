@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 18:30:33 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 18:48:54 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/12 13:37:48 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,13 @@ static void		assign_dist(t_room *start)
 int				dijkstra(t_list **rooms, t_info *info)
 {
 	t_room		*s;
-	t_list		*path;
 
 	ft_lstiter(*rooms, &algo_set_distance);
 	s = info->start->content;
 	s->distance = 0;
 	assign_dist(info->start->content);
+	(info->debug) ? debug_disp_rooms(*rooms) : (void)42;
 	if (!info->end || ((t_room*)info->end->content)->distance == INF)
 		return (0);
-
-	/* Path */
-	if (!path_create(&path, *info))
-		return (0);
-	t_list	*node = path;
-	while (node) /* debug */
-	{
-		s = node->content;
-		ft_putendl(s->name);
-		node = node->next;
-	}
-	ft_lstdel(&path, del_void);
 	return (1);
 }

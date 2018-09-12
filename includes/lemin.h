@@ -1,4 +1,5 @@
 /* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
@@ -6,7 +7,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 18:35:19 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/12 13:49:15 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +19,16 @@
 # include "lemin_structs.h"
 
 # define DEBUG_A "--debug"
+# define QUIET_A "--quiet"
 # define HELP_A "--help"
 
 # define HELP_USAGE "Usage: ./lem-in [OPTION] < [FILE]"
 # define HELP_OPT "\n\nOptions:"
 # define HELP_DEBUG "\n\t--debug -d\t display debug information"
+# define HELP_QUIET "\n\t--quiet -q\t don't display the input"
 # define HELP_HELP "\n\t--help -h\t display this help and exit"
 # define HELP_BAN "\n\nCopyright (c) 2018 Xavier Perrin (GPL3)"
-# define HELP_FULL HELP_USAGE HELP_OPT HELP_DEBUG HELP_HELP HELP_BAN
+# define HELP_FULL HELP_USAGE HELP_OPT HELP_DEBUG HELP_QUIET HELP_HELP HELP_BAN
 
 # define ERROR_S "ERROR"
 # define ERROR_ALGO "Error: No path found"
@@ -62,7 +65,7 @@ int		dijkstra(t_list **rooms, t_info *info);
 /*
 ** path.c
 */
-int		path_create(t_list **dst, t_info info);
+int		print_n_path(t_list **input, t_list **room, t_info *info);
 /*
 ** mem.c
 */
@@ -73,7 +76,11 @@ void	del_room(void *room, size_t len);
 ** helpers.c
 */
 t_room	*get_room(t_list *rooms, char *name);
-void	debug_disp_rooms(t_list *rooms);
 int		print_error(char *msg, t_info info);
+/*
+** debug.c
+*/
+void	debug_disp_rooms(t_list *rooms);
+void	debug_path(t_list *elem);
 
 #endif

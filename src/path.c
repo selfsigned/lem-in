@@ -6,11 +6,12 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:32:32 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 18:47:56 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/12 16:10:19 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+#include "printf.h"
 
 static t_list	*path_next(t_list *links, t_room *room)
 {
@@ -32,7 +33,7 @@ static t_list	*path_next(t_list *links, t_room *room)
 	return (tmp);
 }
 
-int				path_create(t_list **dst, t_info info)
+static int		path_create(t_list **dst, t_info info)
 {
 	t_room		*room;
 	t_list		*tmp;
@@ -53,5 +54,24 @@ int				path_create(t_list **dst, t_info info)
 		else
 			return (0);
 	}
+	return (1);
+}
+
+int				print_n_path(t_list **input, t_list **room, t_info *info)
+{
+	t_list		*path;
+
+	if (!path_create(&path, *info))
+		return (0);
+	if (info->debug)
+	{
+		ft_putstr("Path found: ");
+		ft_lstiter(path, debug_path);
+	}
+	if (!info->quiet)
+	{
+		ft_printf("%d\n", info->ants);
+	}
+	ft_lstdel(&path, del_void);
 	return (1);
 }
