@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:32:32 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/13 17:52:43 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/13 18:19:20 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ static int		path_create(t_list **dst, t_info info)
 ** path order: end -> to -> start
 */
 
-static int		move_ants(t_room *r, t_room *p, t_info *info)
+static int		move_ants(int prev, t_room *r, t_room *p, t_info *info)
 {
 	if (r->flag == end && p->ant)
 	{
-		ft_printf("L%d-%s", p->ant, r->name);
+		ft_printf((prev) ? " L%d-%s" : "L%d-%s", p->ant, r->name);
 		p->ant = 0;
 		r->ant++;
 	}
@@ -74,13 +74,13 @@ static int		move_ants(t_room *r, t_room *p, t_info *info)
 		r->ant = p->ant;
 		p->ant++;
 		info->ants--;
-		ft_printf("L%d-%s", r->ant, r->name);
+		ft_printf((prev) ? " L%d-%s" : "L%d-%s", r->ant, r->name);
 	}
 	else if (!r->ant && p->ant)
 	{
 		r->ant = p->ant;
 		p->ant = 0;
-		ft_printf("L%d-%s", r->ant, r->name);
+		ft_printf((prev) ? " L%d-%s" : "L%d-%s", r->ant, r->name);
 	}
 	else
 		return (0);
@@ -91,17 +91,22 @@ static int		send_ants(t_list *path, t_info *info)
 {
 	t_list	*l;
 	int		ants_nbr;
+	int		prev;
 
 	ants_nbr = info->ants;
 	info->ants--;
 	while (((t_room*)info->end->content)->ant != ants_nbr)
 	{
 		l = path;
+		prev = 0;
 		while (l->next)
 		{
 			if (l && l->next)
-				if (move_ants(l->content, l->next->content, info))
-					ft_putchar(' ');
+				if (move_ants(prev, l->content, l->next->content, info))
+				{
+					prev = 1;
+					/* ft_putchar(' '); */
+				}
 			l = l->next;
 		}
 		ft_putchar('\n');
