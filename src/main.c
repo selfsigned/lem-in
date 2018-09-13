@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/12 19:16:50 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/13 17:32:50 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ static	void	init_info(t_info *info)
 	info->end = NULL;
 }
 
+static	int		error_free(char *err, t_list **in, t_list **rooms, t_info *info)
+{
+		ft_lstdel(in, del_lst_string);
+		ft_lstdel(rooms, del_room);
+		return (print_error(err, *info));
+}
+
 static	int		logic(t_info *info)
 {
 	t_list	*input;
@@ -39,18 +46,11 @@ static	int		logic(t_info *info)
 		return (print_error(ERROR_ROOMS, *info));
 	}
 	if (!parse_links(input, &rooms))
-	{
-		ft_lstdel(&input, del_lst_string);
-		ft_lstdel(&rooms, del_room);
-		return (print_error(ERROR_LINKS, *info));
-	}
-	/* TODO memory */
+		return (error_free(ERROR_LINKS, &input, &rooms, info));
 	if (!dijkstra(&rooms, info))
-	{
-		return (print_error(ERROR_ALGO, *info));
-	}
+		return (error_free(ERROR_ALGO, &input, &rooms, info));
 	if (!(print_n_path(&input, info)))
-		return (print_error(ERROR_ALGO, *info));
+		return (error_free(ERROR_ALGO, &input, &rooms, info));
 	ft_lstdel(&input, del_lst_string);
 	ft_lstdel(&rooms, del_room);
 	return (0);
