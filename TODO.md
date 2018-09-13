@@ -1,0 +1,3 @@
+- ~~two rooms with the same name~~
+- free memory after room problem
+- this-fucking-format-of room 0 0

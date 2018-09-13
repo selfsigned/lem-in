@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/13 17:43:53 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/13 19:19:24 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 static	void	init_info(t_info *info)
 {
-	info->error = 0;
 	info->debug = 0;
 	info->quiet = 0;
 	info->ants = 0;
@@ -40,12 +39,12 @@ static	int		logic(t_info *info)
 		return (print_error(ERROR_ANTS, *info));
 	if (!read_input(&input))
 		return (print_error(ERROR_INPUT, *info));
-	if (!parse_rooms(input, info, &rooms))
+	if (!parse_rooms(0, input, info, &rooms))
 	{
 		ft_lstdel(&input, del_lst_string);
 		return (print_error(ERROR_ROOMS, *info));
 	}
-	if (!parse_links(input, &rooms))
+	if (!parse_links(info->in_links, &rooms))
 		return (error_free(ERROR_LINKS, &input, &rooms, info));
 	if (!dijkstra(&rooms, info))
 		return (error_free(ERROR_ALGO, &input, &rooms, info));

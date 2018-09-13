@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:16:40 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 18:08:21 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/13 19:18:03 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ static int		append_room(char *s, t_list **rooms,
 	r = create_room(s, flag);
 	if (!r.name)
 		return (0);
+	if (head)
+		if (get_room(*rooms, r.name))
+		{
+			ft_strdel(&r.name);
+			return (0);
+		}
 	if (!(link = ft_lstnew(&r, sizeof(t_room))))
 		return (0);
 	if (head)
@@ -81,13 +87,12 @@ static int		append_room(char *s, t_list **rooms,
 	return (1);
 }
 
-int				parse_rooms(t_list *input, t_info *info, t_list **rooms)
+int				parse_rooms(t_posflag flag,
+					t_list *input, t_info *info, t_list **rooms)
 {
 	size_t		room_count;
-	t_posflag	flag;
 
 	room_count = 0;
-	flag = nil;
 	while (input)
 	{
 		if (is_room(input->content))
@@ -97,13 +102,16 @@ int				parse_rooms(t_list *input, t_info *info, t_list **rooms)
 			flag = nil;
 			room_count++;
 		}
-		else if (!((char*)input->content) || ((char*)input->content)[0] != '#')
-			return (-1);
-		if (ft_strnstr(input->content, START_S, ft_strlen(START_S)))
+		else if (ft_strnstr(input->content, START_S, ft_strlen(START_S)))
 			flag = start;
 		else if (ft_strnstr(input->content, END_S, ft_strlen(END_S)))
 			flag = end;
+		else if (!(input->content && ((char*)input->content)[0] == '#'))
+		{
+			info->in_links = input;
+			return ((room_count < 2) ? 0 : 1);
+		}
 		input = input->next;
 	}
-	return ((room_count < 2) ? 0 : 1);
+	return (0);
 }

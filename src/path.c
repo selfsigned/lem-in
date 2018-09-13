@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:32:32 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/13 18:19:20 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/13 18:47:30 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,7 @@ static int		send_ants(t_list *path, t_info *info)
 		{
 			if (l && l->next)
 				if (move_ants(prev, l->content, l->next->content, info))
-				{
 					prev = 1;
-					/* ft_putchar(' '); */
-				}
 			l = l->next;
 		}
 		ft_putchar('\n');

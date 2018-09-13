@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:13:55 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 17:40:15 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/13 18:55:45 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int				parse_links(t_list *input, t_list **rooms)
 			append_link(rooms, link_rooms);
 			ft_strdeltab(link_rooms, i);
 		}
+		else if (!input->content || ((char*)input->content)[0] != '#')
+			return (0);
 		input = input->next;
 	}
 	return (1);
