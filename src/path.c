@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:32:32 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/12 22:18:40 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/13 17:52:43 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,8 @@ static int		path_create(t_list **dst, t_info info)
 ** path order: end -> to -> start
 */
 
-static int	move_ants(t_list *path, t_info *info)
+static int		move_ants(t_room *r, t_room *p, t_info *info)
 {
-	t_room *r;
-	t_room *p;
-
-	if (!path || !path->next)
-		return (0);
-	r = path->content;
-	p = path->next->content;
 	if (r->flag == end && p->ant)
 	{
 		ft_printf("L%d-%s", p->ant, r->name);
@@ -94,7 +87,7 @@ static int	move_ants(t_list *path, t_info *info)
 	return (1);
 }
 
-static int	send_ants(t_list *path, t_info *info)
+static int		send_ants(t_list *path, t_info *info)
 {
 	t_list	*l;
 	int		ants_nbr;
@@ -106,8 +99,8 @@ static int	send_ants(t_list *path, t_info *info)
 		l = path;
 		while (l->next)
 		{
-			if (move_ants(l, info))
-				if (l->next)
+			if (l && l->next)
+				if (move_ants(l->content, l->next->content, info))
 					ft_putchar(' ');
 			l = l->next;
 		}

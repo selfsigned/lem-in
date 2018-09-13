@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/13 17:32:50 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/13 17:43:53 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static	void	init_info(t_info *info)
 
 static	int		error_free(char *err, t_list **in, t_list **rooms, t_info *info)
 {
-		ft_lstdel(in, del_lst_string);
-		ft_lstdel(rooms, del_room);
-		return (print_error(err, *info));
+	ft_lstdel(in, del_lst_string);
+	ft_lstdel(rooms, del_room);
+	return (print_error(err, *info));
 }
 
 static	int		logic(t_info *info)
