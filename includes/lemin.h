@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/13 19:18:37 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/18 18:35:37 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define ERROR_INPUT "Error: Invalid input"
 # define ERROR_ROOMS "Error: Can't parse rooms"
 # define ERROR_LINKS "Error: Can't parse links"
+# define ERROR_WAYPOINT "Error: No start or end"
 
 /*
 ** Parsing

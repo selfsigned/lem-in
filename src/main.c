@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/13 19:19:24 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/18 18:38:25 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static	int		logic(t_info *info)
 		ft_lstdel(&input, del_lst_string);
 		return (print_error(ERROR_ROOMS, *info));
 	}
+	if (!info->start || !info->end)
+		return (error_free(ERROR_WAYPOINT, &input, &rooms, info));
 	if (!parse_links(info->in_links, &rooms))
 		return (error_free(ERROR_LINKS, &input, &rooms, info));
 	if (!dijkstra(&rooms, info))
