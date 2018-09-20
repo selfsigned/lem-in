@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:32:32 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/13 18:47:30 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/20 18:56:54 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,7 @@ int				print_n_path(t_list **input, t_info *info)
 		ft_lstiter(path, debug_path);
 	}
 	if (!info->quiet)
-	{
-		ft_printf("%d\n", info->ants);
 		ft_lstiter(*input, print_elem);
-	}
 	((t_room*)info->start->content)->ant = 1;
 	send_ants(path, info);
 	ft_lstdel(&path, del_void);

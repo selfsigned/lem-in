@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/18 18:35:37 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/20 18:53:42 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,12 @@
 /*
 ** input.c
 */
-size_t	parse_ant_number(void);
+size_t	parse_ant_number(t_list *list, t_info *info);
 int		read_input(t_list **list);
 /*
 ** parse_*.c
 */
+int		is_room(char *s);
 int		parse_rooms(t_posflag f, t_list *input, t_info *info, t_list **rooms);
 int		parse_links(t_list *input, t_list **rooms);
 /*

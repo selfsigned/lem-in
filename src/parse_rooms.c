@@ -6,13 +6,13 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:16:40 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/13 19:18:03 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/20 18:52:48 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static	int		is_room(char *s)
+int				is_room(char *s)
 {
 	size_t	i;
 

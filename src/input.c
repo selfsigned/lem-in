@@ -6,40 +6,12 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 06:30:03 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/11 15:57:15 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/20 18:54:13 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include <stdlib.h>
-
-size_t	parse_ant_number(void)
-{
-	char	*tmp;
-	int		r;
-
-	tmp = NULL;
-	while (get_next_line(0, &tmp) >= 0)
-	{
-		if (!tmp)
-			break ;
-		if (tmp[0] == '#')
-		{
-			free(tmp);
-			continue ;
-		}
-		else
-		{
-			r = ft_atoi(tmp);
-			free(tmp);
-			if (r > 0)
-				return ((size_t)r);
-			else
-				break ;
-		}
-	}
-	return (0);
-}
 
 int		read_input(t_list **list)
 {
@@ -60,4 +32,31 @@ int		read_input(t_list **list)
 		free(line);
 	}
 	return (1);
+}
+
+size_t	parse_ant_number(t_list *input, t_info *info)
+{
+	char	*tmp;
+	int		r;
+
+	while (input)
+	{
+		tmp = input->content;
+		if (!tmp || !tmp[0])
+			break ;
+		if (tmp[0] == '#')
+			input = input->next;
+		else
+		{
+			if ((r = ft_atoi(tmp)) > 0 && !is_room(tmp))
+			{
+				info->ants = r;
+				info->in_rooms = input->next;
+				return (1);
+			}
+			else
+				break ;
+		}
+	}
+	return (0);
 }

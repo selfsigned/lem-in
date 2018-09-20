@@ -1,3 +1,4 @@
 - ~~two rooms with the same name~~
+- Streamline ant nbr parsing
 - free memory after room problem
 - this-fucking-format-of room 0 0
