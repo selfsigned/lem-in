@@ -6,22 +6,12 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:49:38 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/20 19:35:05 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/26 01:46:05 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include "printf.h"
-#include <stdlib.h>
-
-static	void	init_info(t_info *info)
-{
-	info->debug = 0;
-	info->quiet = 0;
-	info->ants = 0;
-	info->start = NULL;
-	info->end = NULL;
-}
 
 static	int		error_free_input(char *err, t_list **input, t_info *info)
 {
@@ -34,6 +24,19 @@ static	int		error_free(char *err, t_list **in, t_list **rooms, t_info *info)
 	ft_lstdel(in, del_lst_string);
 	ft_lstdel(rooms, del_room);
 	return (print_error(err, *info));
+}
+
+static	void	free_unused_in(t_list **input, t_info info)
+{
+	t_list	*node;
+
+	node = *input;
+	while (node)
+	{
+		if (node->next == info.in_end)
+			ft_lstdel(&node->next, del_lst_string);
+		node = node->next;
+	}
 }
 
 static	int		logic(t_info *info)
@@ -49,8 +52,9 @@ static	int		logic(t_info *info)
 		return (error_free_input(ERROR_ROOMS, &input, info));
 	if (!info->start || !info->end)
 		return (error_free(ERROR_WAYPOINT, &input, &rooms, info));
-	if (!parse_links(info->in_links, &rooms))
+	if (!parse_links(info->in_links, &rooms, info))
 		return (error_free(ERROR_LINKS, &input, &rooms, info));
+	free_unused_in(&input, *info);
 	if (!dijkstra(&rooms, info))
 		return (error_free(ERROR_ALGO, &input, &rooms, info));
 	if (!(print_n_path(&input, info)))
@@ -64,7 +68,7 @@ int				main(int ac, char **av)
 {
 	t_info	info;
 
-	init_info(&info);
+	ft_bzero(&info, sizeof(t_info));
 	if (ac > 1)
 		while (ac-- != 0)
 		{

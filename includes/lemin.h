@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/20 18:53:42 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/25 19:55:12 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		read_input(t_list **list);
 */
 int		is_room(char *s);
 int		parse_rooms(t_posflag f, t_list *input, t_info *info, t_list **rooms);
-int		parse_links(t_list *input, t_list **rooms);
+int		parse_links(t_list *input, t_list **rooms, t_info *info);
 /*
 ** algo.c
 */

@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 22:19:26 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/20 18:33:39 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/25 19:53:58 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_info
 	t_list		*end;
 	t_list		*in_rooms;
 	t_list		*in_links;
+	t_list		*in_end;
 }				t_info;
 
 /*

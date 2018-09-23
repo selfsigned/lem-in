@@ -1,4 +1,6 @@
 - ~~two rooms with the same name~~
-- Streamline ant nbr parsing
-- free memory after room problem
+- ~~Streamline ant nbr parsing~~
+- ~~actual error management for parsing~~
+- ~~free memory after room problem~~
+- free memory after link problem
 - this-fucking-format-of room 0 0
