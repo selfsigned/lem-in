@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/25 19:55:12 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/27 18:03:32 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@
 ** Algorithm
 */
 # define INF INT_MAX
+
+/*
+** Path
+*/
+# define S_TO_END_INLINE_HACK 2
 
 /*
 ** input.c

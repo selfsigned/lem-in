@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:32:32 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/20 18:56:54 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/09/27 18:09:57 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,16 @@ static int		path_create(t_list **dst, t_info info)
 
 static int		move_ants(int prev, t_room *r, t_room *p, t_info *info)
 {
-	if (r->flag == end && p->ant)
+	if (p->flag == start && r->flag == end)
+	{
+		/* TODO: find way to do this inline */
+		ft_printf("prev %d r->ant %d info->ants %d\n", prev, r->ant, info->ants); /* Debug */
+		r->ant++;
+		ft_printf((prev) ? " L%d-%s" : "L%d-%s", p->ant, r->name);
+		p->ant++;
+		return (S_TO_END_INLINE_HACK);
+	}
+	else if (r->flag == end && p->ant)
 	{
 		ft_printf((prev) ? " L%d-%s" : "L%d-%s", p->ant, r->name);
 		p->ant = 0;
@@ -92,6 +101,7 @@ static int		send_ants(t_list *path, t_info *info)
 	t_list	*l;
 	int		ants_nbr;
 	int		prev;
+	int		r;
 
 	ants_nbr = info->ants;
 	info->ants--;
@@ -102,12 +112,15 @@ static int		send_ants(t_list *path, t_info *info)
 		while (l->next)
 		{
 			if (l && l->next)
-				if (move_ants(prev, l->content, l->next->content, info))
+				if ((r = move_ants(prev, l->content, l->next->content, info)))
 					prev = 1;
 			l = l->next;
 		}
-		ft_putchar('\n');
+		if (r != S_TO_END_INLINE_HACK)
+			ft_putchar('\n');
 	}
+	if (r == S_TO_END_INLINE_HACK)
+			ft_putchar('\n');
 	return (1);
 }
 
