@@ -6,12 +6,15 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:32:32 by xperrin           #+#    #+#             */
-/*   Updated: 2018/10/02 16:57:45 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/10/02 17:11:46 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-#include "printf.h"
+
+/*
+** path order: end -> to -> start
+*/
 
 static t_list	*path_next(t_list *links, t_room *room)
 {
@@ -54,71 +57,6 @@ static int		path_create(t_list **dst, t_info info)
 		else
 			return (0);
 	}
-	return (1);
-}
-
-/*
-** path order: end -> to -> start
-*/
-
-static int		move_ants(int prev, t_room *r, t_room *p, t_info *info)
-{
-	if (p->flag == start && r->flag == end)
-	{
-		r->ant++;
-		ft_printf((prev) ? " L%d-%s" : "L%d-%s", p->ant, r->name);
-		p->ant++;
-		return (S_TO_END_INLINE_HACK);
-	}
-	else if (r->flag == end && p->ant)
-	{
-		ft_printf((prev) ? " L%d-%s" : "L%d-%s", p->ant, r->name);
-		p->ant = 0;
-		r->ant++;
-	}
-	else if (p->flag == start && info->ants && !r->ant)
-	{
-		r->ant = p->ant;
-		p->ant++;
-		info->ants--;
-		ft_printf((prev) ? " L%d-%s" : "L%d-%s", r->ant, r->name);
-	}
-	else if (!r->ant && p->ant)
-	{
-		r->ant = p->ant;
-		p->ant = 0;
-		ft_printf((prev) ? " L%d-%s" : "L%d-%s", r->ant, r->name);
-	}
-	else
-		return (0);
-	return (1);
-}
-
-static int		send_ants(t_list *path, t_info *info)
-{
-	t_list	*l;
-	int		ants_nbr;
-	int		prev;
-	int		r;
-
-	ants_nbr = info->ants;
-	info->ants--;
-	while (((t_room*)info->end->content)->ant != ants_nbr)
-	{
-		l = path;
-		prev = (r == S_TO_END_INLINE_HACK) ? 1 : 0;
-		while (l->next)
-		{
-			if (l && l->next)
-				if ((r = move_ants(prev, l->content, l->next->content, info)))
-					prev = 1;
-			l = l->next;
-		}
-		if (r != S_TO_END_INLINE_HACK)
-			ft_putchar('\n');
-	}
-	if (r == S_TO_END_INLINE_HACK)
-			ft_putchar('\n');
 	return (1);
 }
 

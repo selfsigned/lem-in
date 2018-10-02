@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:13:55 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/27 17:32:18 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/10/02 17:05:54 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,26 +66,33 @@ static	int		append_link(t_list **rooms, char **input)
 	return (1);
 }
 
-int				parse_links(t_list *input, t_list **rooms, t_info *info)
+static	int		handle_link(t_list *input, t_list **rooms)
 {
 	char	**link_rooms;
 	int		i;
 
+	i = 0;
+	if (!(link_rooms = ft_strsplit(input->content, '-')))
+		return (0);
+	while (link_rooms[i])
+		++i;
+	if (i != 2 || !append_link(rooms, link_rooms))
+	{
+		ft_strdeltab(link_rooms, i);
+		return (0);
+	}
+	ft_strdeltab(link_rooms, i);
+	return (1);
+}
+
+int				parse_links(t_list *input, t_list **rooms, t_info *info)
+{
 	while (input)
 	{
-		i = 0;
 		if (is_link(input->content))
 		{
-			if (!(link_rooms = ft_strsplit(input->content, '-')))
+			if (!handle_link(input, rooms))
 				return (0);
-			while (link_rooms[i])
-				++i;
-			if (i != 2 || !append_link(rooms, link_rooms))
-			{
-				ft_strdeltab(link_rooms, i);
-				return (0);
-			}
-			ft_strdeltab(link_rooms, i);
 			input = input->next;
 		}
 		else if (input->content && ((char*)input->content)[0] == '#')

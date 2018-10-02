@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 17:46:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/27 18:03:32 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/10/02 17:12:40 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ int		dijkstra(t_list **rooms, t_info *info);
 ** path.c
 */
 int		print_n_path(t_list **input, t_info *info);
+/*
+** path_send.c
+*/
+int		send_ants(t_list *path, t_info *info);
 /*
 ** mem.c
 */

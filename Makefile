@@ -6,12 +6,12 @@
 #    By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 23:57:19 by xperrin           #+#    #+#              #
-#    Updated: 2018/09/12 13:46:16 by xperrin          ###   ########.fr        #
+#    Updated: 2018/10/02 17:24:25 by xperrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
-CFLAGS = -Wextra -Wall -g #-Werror
+CFLAGS = -Wextra -Wall -Werror -g
 LDFLAGS = -L$(LIB) -lft
 
 LIB = libft
@@ -32,7 +32,8 @@ SRC = main.c \
       parse_rooms.c \
       parse_links.c \
       algo.c \
-      path.c
+      path.c \
+      path_send.c
 
 VPATH= $(SRCDIR)
 OBJDIR = obj

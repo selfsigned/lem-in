@@ -3,5 +3,5 @@
 - ~~actual error management for parsing~~
 - ~~free memory after room problem~~
 - ~~free memory after link problem~~ (Mite be good to double check later)
-- start connected to end
+- ~~start connected to end~~
 - this-fucking-format-of room 0 0
