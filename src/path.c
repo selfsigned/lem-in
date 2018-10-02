@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:32:32 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/27 18:09:57 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/10/02 16:57:45 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ static int		move_ants(int prev, t_room *r, t_room *p, t_info *info)
 {
 	if (p->flag == start && r->flag == end)
 	{
-		/* TODO: find way to do this inline */
-		ft_printf("prev %d r->ant %d info->ants %d\n", prev, r->ant, info->ants); /* Debug */
 		r->ant++;
 		ft_printf((prev) ? " L%d-%s" : "L%d-%s", p->ant, r->name);
 		p->ant++;
@@ -108,7 +106,7 @@ static int		send_ants(t_list *path, t_info *info)
 	while (((t_room*)info->end->content)->ant != ants_nbr)
 	{
 		l = path;
-		prev = 0;
+		prev = (r == S_TO_END_INLINE_HACK) ? 1 : 0;
 		while (l->next)
 		{
 			if (l && l->next)
