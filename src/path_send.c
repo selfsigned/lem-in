@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/02 17:10:56 by xperrin           #+#    #+#             */
-/*   Updated: 2018/10/02 17:23:01 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/10/02 18:37:02 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int				send_ants(t_list *path, t_info *info)
 	int		prev;
 	int		r;
 
+	r = 0;
 	ants_nbr = info->ants;
 	info->ants--;
 	while (((t_room*)info->end->content)->ant != ants_nbr)
