@@ -4,4 +4,5 @@
 - ~~free memory after room problem~~
 - ~~free memory after link problem~~ (Mite be good to double check later)
 - ~~start connected to end~~
-- this-fucking-format-of room 0 0
+- ~~this-fucking-format-of room 0 0~~
+- unitialized shit in path?
