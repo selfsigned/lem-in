@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 06:30:03 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/27 16:47:17 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/10/03 14:43:55 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		read_input(t_list **list)
 size_t	parse_ant_number(t_list *input, t_info *info)
 {
 	char	*tmp;
+	char	*c;
 	int		r;
 
 	while (input)
@@ -50,8 +51,14 @@ size_t	parse_ant_number(t_list *input, t_info *info)
 			input = input->next;
 		else
 		{
-			if ((r = ft_atoi(tmp)) > 0 && !is_room(tmp))
+			if (tmp[0] != '-' && (r = ft_atoi(tmp)) > 0 && !is_room(tmp))
 			{
+				if (!(c = ft_itoa(r)) || strcmp(c, tmp))
+				{
+					free(c);
+					return (0);
+				}
+				free(c);
 				info->ants = r;
 				info->in_rooms = input->next;
 				return (1);
