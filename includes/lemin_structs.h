@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 22:19:26 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/25 19:53:58 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/10/03 14:48:03 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ typedef struct	s_info
 typedef struct	s_room
 {
 	char		*name;
-	int			x;
-	int			y;
 	int			distance;
 	int			ant;
 	t_posflag	flag;

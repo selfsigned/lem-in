@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:47:54 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/12 16:01:21 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/10/03 14:48:26 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	debug_disp_rooms(t_list *rooms)
 	while (rooms)
 	{
 		tmp = rooms->content;
-		ft_dprintf(2, "name:%.5s x:%.02d y:%.02d distance:%d  flag:%d links:",
-			tmp->name, tmp->x, tmp->y, tmp->distance, tmp->flag);
+		ft_dprintf(2, "name:%.5s distance:%d  flag:%d links:",
+			tmp->name, tmp->distance, tmp->flag);
 		node = tmp->links;
 		while (node)
 		{

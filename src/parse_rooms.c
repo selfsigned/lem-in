@@ -6,7 +6,7 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:16:40 by xperrin           #+#    #+#             */
-/*   Updated: 2018/09/20 18:52:48 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/10/03 14:48:58 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ static	t_room	create_room(char *input, t_posflag flag)
 		return (room);
 	}
 	room.name = ft_strdup(s[0]);
-	room.x = ft_atoi(s[1]);
-	room.y = ft_atoi(s[2]);
 	room.links = NULL;
 	ft_strdeltab(s, 3);
 	return (room);
