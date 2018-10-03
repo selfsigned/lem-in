@@ -6,14 +6,14 @@
 /*   By: xperrin <xperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 06:30:03 by xperrin           #+#    #+#             */
-/*   Updated: 2018/10/03 14:43:55 by xperrin          ###   ########.fr       */
+/*   Updated: 2018/10/03 15:35:48 by xperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include <stdlib.h>
 
-int		read_input(t_list **list)
+int			read_input(t_list **list)
 {
 	char	*line;
 	t_list	*next;
@@ -36,10 +36,19 @@ int		read_input(t_list **list)
 	return (1);
 }
 
-size_t	parse_ant_number(t_list *input, t_info *info)
+static int	assign_check_overflow(char *s, int r)
+{
+	char *c;
+
+	if (!(c = ft_itoa(r)) || strcmp(c, s))
+		r = 0;
+	free(c);
+	return (r);
+}
+
+size_t		parse_ant_number(t_list *input, t_info *info)
 {
 	char	*tmp;
-	char	*c;
 	int		r;
 
 	while (input)
@@ -53,15 +62,9 @@ size_t	parse_ant_number(t_list *input, t_info *info)
 		{
 			if (tmp[0] != '-' && (r = ft_atoi(tmp)) > 0 && !is_room(tmp))
 			{
-				if (!(c = ft_itoa(r)) || strcmp(c, tmp))
-				{
-					free(c);
-					return (0);
-				}
-				free(c);
-				info->ants = r;
+				info->ants = assign_check_overflow(tmp, r);
 				info->in_rooms = input->next;
-				return (1);
+				return (info->ants);
 			}
 			else
 				break ;
